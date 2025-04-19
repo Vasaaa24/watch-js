@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Stopwatch & Timer</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div id="wrapper">
+    <div id="language-switcher">
+      <h2 id="language-title">Language</h2>
+      <select id="language-select">
+        <option value="en">English</option>
+        <option value="cs">Czech</option>
+        <option value="uk">Ukrainian</option>
+      </select>
+    </div>
+
+    <div class="section glass" id="stopwatch">
+      <h1 id="stopwatch-title">Stopwatch</h1>
+      <p id="time">00:00:00.0</p>
+      <div class="controls">
+        <button id="start">Start</button>
+        <button id="stop">Stop</button>
+        <button id="reset">Reset</button>
+        <button id="lap">Lap</button>
+      </div>
+      <div id="laps">
+        <h2 id="laps-title">Laps</h2>
+        <ul id="lap-list"></ul>
+      </div>
+    </div>
+
+    <div class="section glass" id="timer">
+      <h1 id="timer-title">Timer</h1>
+      <p id="timer-display">00:00:00</p>
+      <div class="controls">
+        <input type="number" id="timer-hours" placeholder="Hours" min="0"/>
+        <input type="number" id="timer-minutes" placeholder="Minutes" min="0"/>
+        <input type="number" id="timer-seconds" placeholder="Seconds" min="0"/>
+        <button id="start-timer">Start</button>
+        <button id="reset-timer">Reset</button>
+      </div>
+    </div>
+
+    <button id="theme-toggle">🌙</button>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>

@@ -1,0 +1,334 @@
+:root {
+	--primary: #7f5af0;
+	--secondary: #2cb67d;
+	--text-light: #ffffff;
+	--text-dark: #1f1f1f;
+	--glass-bg: rgba(255, 255, 255, 0.1);
+	--blur: 20px;
+}
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	font-family: 'Inter', sans-serif;
+	background: linear-gradient(135deg, #1f1f1f, #121212);
+	color: var(--text-light);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 100vh;
+	transition: background 0.4s ease;
+}
+
+#wrapper {
+	width: 90%;
+	max-width: 720px;
+	padding: 30px;
+}
+
+.glass {
+	background: var(--glass-bg);
+	border-radius: 20px;
+	padding: 30px;
+	margin-bottom: 30px;
+	backdrop-filter: blur(var(--blur));
+	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+	border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+h1, h2 {
+	font-weight: 600;
+	margin-bottom: 16px;
+}
+
+#language-switcher {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 24px;
+}
+
+#language-select {
+	padding: 10px 14px;
+	background: var(--glass-bg);
+	color: var(--text-light);
+	border-radius: 12px;
+	border: none;
+	backdrop-filter: blur(10px);
+	transition: color 0.3s ease;
+}
+
+#language-select option {
+	background-color: var(--text-dark);
+	color: var(--text-light);
+}
+#language-select option:checked {
+	background-color: var(--primary);
+}
+
+#language-title {
+	transition: color 0.3s ease;
+}
+
+.controls {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 12px;
+	margin-top: 16px;
+}
+
+.controls button,
+#theme-toggle {
+	padding: 12px 20px;
+	border-radius: 12px;
+	border: none;
+	background-color: var(--primary);
+	color: white;
+	font-weight: 600;
+	cursor: pointer;
+	transition: 0.3s ease;
+}
+
+.controls button:hover,
+#theme-toggle:hover {
+	background-color: #a18fff;
+}
+
+input[type="number"] {
+	padding: 10px;
+	border-radius: 10px;
+	border: none;
+	width: 100px;
+	text-align: center;
+	background-color: rgba(255, 255, 255, 0.15);
+	color: var(--text-light);
+}
+
+input[type="number"]:focus {
+	outline: none;
+	border: 2px solid var(--primary);
+}
+
+#lap-list {
+	list-style: none;
+	margin-top: 16px;
+	max-height: 150px;
+	overflow-y: auto;
+}
+
+#lap-list li {
+	background: rgba(255, 255, 255, 0.1);
+	padding: 8px;
+	margin: 4px 0;
+	border-radius: 8px;
+}
+
+body.light {
+	background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
+	color: var(--text-dark);
+}
+
+body.light .glass {
+	background: rgba(255, 255, 255, 0.6);
+	color: var(--text-dark);
+}
+
+body.light input[type="number"] {
+	background-color: rgba(0, 0, 0, 0.05);
+	color: var(--text-dark);
+}
+
+body.light #language-select {
+	background-color: rgba(255, 255, 255, 0.6);
+	color: var(--text-dark);
+}
+
+body.light .controls button,
+body.light #theme-toggle {
+	background-color: var(--secondary);
+	color: var(--text-dark);
+}
+
+body.light .controls button:hover,
+body.light #theme-toggle:hover {
+	background-color: #38d9a9;
+}
+
+body.light #lap-list li {
+	background: rgba(0, 0, 0, 0.05);
+}
+
+body.light #language-title {
+	color: var(--text-dark);
+}
+
+#theme-toggle {
+	margin: 10px auto 0;
+	display: block;
+	font-size: 1.5rem;
+	background: transparent;
+	border: 2px solid currentColor;
+}
+
+@media (max-width: 768px) {
+    #laps {
+        margin-top: 32px;
+        text-align: center;
+    }
+
+    #laps-title {
+        margin-bottom: 8px;
+    }
+
+    #lap-list {
+        display: inline-block;
+        text-align: left;
+        margin-top: 16px;
+    }
+
+    body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        min-height: 100vh;
+        margin: 0;
+    }
+
+    #wrapper {
+        margin: auto;
+        text-align: center;
+    }
+
+    .controls {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 12px;
+        margin-top: 16px;
+    }
+
+    input[type="number"] {
+        margin: auto;
+    }
+
+    #theme-toggle {
+        margin: 20px auto 0;
+        display: block;
+    }
+
+    #timer .controls {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+        margin-top: 24px;
+    }
+
+    #timer .controls input[type="number"] {
+        margin: 0 auto;
+    }
+
+    #timer .controls button {
+        width: 100%;
+        max-width: 200px;
+    }
+
+    .controls {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+        margin-top: 24px;
+    }
+
+    .controls button {
+        width: 100%;
+        max-width: 200px;
+    }
+}
+
+@media (max-width: 480px) {
+    #laps {
+        margin-top: 24px;
+        text-align: center;
+    }
+
+    #laps-title {
+        margin-bottom: 8px;
+    }
+
+    #lap-list {
+        display: inline-block;
+        text-align: left;
+        margin-top: 16px;
+    }
+
+    body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        min-height: 100vh;
+        margin: 0;
+    }
+
+    #wrapper {
+        margin: auto;
+        text-align: center;
+    }
+
+    .controls {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 12px;
+        margin-top: 16px;
+    }
+
+    input[type="number"] {
+        margin: auto;
+    }
+
+    #theme-toggle {
+        margin: 20px auto 0;
+        display: block;
+    }
+
+    #timer .controls {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+        margin-top: 24px;
+    }
+
+    #timer .controls input[type="number"] {
+        margin: 0 auto;
+    }
+
+    #timer .controls button {
+        width: 100%;
+        max-width: 200px;
+    }
+
+    .controls {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+        margin-top: 24px;
+    }
+
+    .controls button {
+        width: 100%;
+        max-width: 200px;
+    }
+}
