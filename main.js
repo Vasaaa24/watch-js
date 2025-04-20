@@ -69,15 +69,17 @@ const translations = {
 	this.textContent = document.body.classList.contains("light") ? "🌞" : "🌙";
   });
   
+  // ------------------ STOPWATCH ------------------
   let startTime, interval;
   let running = false;
+  let elapsedTime = 0;
   
   const timeDisplay = document.getElementById("time");
   const lapList = document.getElementById("lap-list");
   
   function updateStopwatch() {
 	const now = Date.now();
-	const diff = now - startTime;
+	const diff = now - startTime + elapsedTime;
 	const ms = Math.floor((diff % 1000) / 100);
 	const sec = Math.floor((diff / 1000) % 60);
 	const min = Math.floor((diff / 60000) % 60);
@@ -91,15 +93,18 @@ const translations = {
   
   document.getElementById("start").onclick = () => {
 	if (!running) {
-	  startTime = Date.now() - (interval ? Date.now() - startTime : 0);
+	  startTime = Date.now();
 	  interval = setInterval(updateStopwatch, 100);
 	  running = true;
 	}
   };
   
   document.getElementById("stop").onclick = () => {
-	clearInterval(interval);
-	running = false;
+	if (running) {
+	  clearInterval(interval);
+	  elapsedTime += Date.now() - startTime;
+	  running = false;
+	}
   };
   
   document.getElementById("reset").onclick = () => {
@@ -107,25 +112,21 @@ const translations = {
 	timeDisplay.textContent = "00:00:00.0";
 	lapList.innerHTML = "";
 	running = false;
-	interval = null;
+	elapsedTime = 0;
   };
   
   document.getElementById("lap").onclick = () => {
 	if (!running) return;
 	const li = document.createElement("li");
 	li.textContent = timeDisplay.textContent;
-  
-	// Insert the new lap at the top of the list
 	lapList.insertBefore(li, lapList.firstChild);
   };
   
+  // ------------------ TIMER ------------------
   let timerInterval;
   
   document.getElementById("start-timer").onclick = () => {
-	if (timerInterval) {
-	  // If a timer is already running, do nothing
-	  return;
-	}
+	if (timerInterval) return;
   
 	const hours = parseInt(document.getElementById("timer-hours").value) || 0;
 	const minutes = parseInt(document.getElementById("timer-minutes").value) || 0;
@@ -154,7 +155,7 @@ const translations = {
 	  clearInterval(timerInterval);
 	  timerInterval = null;
 	}
-	document.getElementById("timer-display").textContent = "00:00:00"; // Reset the display
+	document.getElementById("timer-display").textContent = "00:00:00";
 	document.getElementById("timer-hours").value = "";
 	document.getElementById("timer-minutes").value = "";
 	document.getElementById("timer-seconds").value = "";
